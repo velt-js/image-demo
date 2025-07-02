@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Demo</title>
+
+    <style>
+        body {
+            min-height: 100vh;
+            min-width: 100vw;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .image-container {
+            position: relative;
+            display: flex;
+        }
+
+        .image-container img {
+            width: 80%;
+            height: 80%;
+        }
+    </style>
+
+</head>
+<body>
+    
+    <velt-comments></velt-comments>
+    <velt-comment-tool></velt-comment-tool>
+
+    <div class="image-container">
+        <img src="https://i.pravatar.cc/300" alt="image">
+    </div>
+
+    <!-- https://cdn.velt.dev/lib/sdk@latest/velt.js -->
+    <script type="module" src="https://cdn.velt.dev/lib/sdk@latest/velt.js" onload="loadVelt()"></script>
+
+    <script>
+        async function loadVelt() {
+            if (Velt) {
+                // Step 2: Initialize With Your API Key
+                await Velt.init("Emcfab4ysRXaC1CZ8hmG");
+
+                // Step 3: Identify the logged in user
+                identifyVelt();
+
+                // Step 4: Add Document ID
+                Velt.setDocumentId("velt-image-demo");
+            }
+        }
+
+
+        function identifyVelt() {
+            // You need to pass these fields about your logged in user to us.
+            const yourLoggedInUser = {
+                userId: "user1",
+                name: "User One",
+                email: "user1@trysnippyly.com",
+                photoUrl: "https://i.pravatar.cc/300", //(optional)
+                organizationId: "org1",
+            };
+
+            Velt.identify(yourLoggedInUser)
+                .then((res) => {
+                    // User auth successful with Velt
+                })
+                .catch((err) => {
+                    // Failed to authenticate user with Velt
+                });
+        }
+    </script>
+</body>
+</html>
